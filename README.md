@@ -1,6 +1,6 @@
 # NC Candidate Campaign Finance Overview
 
-This tool will give you a sweeping overview of a candidate who files their finance report to the [North Carolina Sate Board of Elections](https://www.ncsbe.gov/index.html). It will only work with a CSV format of the data that has not had the headers modified.
+This tool will give you a sweeping overview of the Detailed Receipts that a candidate files with the [North Carolina Sate Board of Elections](https://www.ncsbe.gov/index.html). It will only work with a CSV format of the data that has not had the headers modified.
 
 *This was created with the intent of learning how to work with csv data and Javascript.*
 
