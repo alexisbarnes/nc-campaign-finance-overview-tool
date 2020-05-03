@@ -71,7 +71,7 @@ function handleFileSelect(evt) {
         for (let i = 0; i < donorsArr.length; i++) {
             // console.log(donorsArr[i][0]);
             // console.log(donorsArr[i][1]);
-            document.getElementById("donorsList").innerHTML = '<tr><td>' + donorsArr[i][0] + '</td><td>' + donorsArr[i][1] + '</td></tr>';
+            $('#donorsList').append('<tr><td>' + donorsArr[i][0] + '</td><td>' + '$' + donorsArr[i][1] + '</td></tr>');
         }
 
 
@@ -151,13 +151,12 @@ function handleFileSelect(evt) {
         document.getElementById('minimumDonor').innerHTML = "$" + min;
 
         if (lessCount > 0) {
-            // Nothing
             if (lessCount === 1) {
-                document.getElementById('error').innerHTML = "Seems like an amount less than $50 and NOT labeled an Aggregated Individual Contribution was caught in this data set.";
+                document.getElementById('error').innerHTML = "Seems like an amount less than $50 and NOT labeled an Aggregated Individual Contribution was caught in this data set. It is possible a donor gave more previously and donated less during this report. If so, their name should be listed below.";
 
                 console.log("Seems like an amount less than $50 and NOT labeled an Aggregated Individual Contribution was caught in this data set.");
             } else {
-                document.getElementById('error').innerHTML = "Seems like several amounts less than $50 and NOT labeled Aggregated Individual Contributions were caught in this data set.";
+                document.getElementById('error').innerHTML = "Seems like several amounts less than $50 and NOT labeled Aggregated Individual Contributions were caught in this data set. It is possible several donors gave more previously and donated less during this report. If so, their name should be listed below.";
                 console.log("Seems like several amounts less than $50 and NOT Aggregated Individual Contributors were caught in this data set.");
             }
         }
