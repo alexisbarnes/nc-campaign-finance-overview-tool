@@ -8,11 +8,14 @@ h3 {
 }
 
 a {
-    color: #D9AF32;
+    color: #8C1C1C;
+    
 }
 
 a:hover {
-    color: #8C1C1C;
+    color: #D9AF32;
+    text-decoration: none;
+    
 }
 
 

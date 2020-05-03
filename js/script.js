@@ -54,8 +54,10 @@ function handleFileSelect(evt) {
             } else if (candidateRcpts[i]['Name'] === undefined || candidateRcpts[i]['Name'] === undefined) {
                 donorsError++;
             } else {
-                totalDonors++;
-
+                if (candidateRcpts[i]['Amount'] > 50) {
+                    totalDonors++;
+                }
+                
                 if (!has(candidateRcpts[i]['Name'], donorsArr)) {
                     donorsArr.push([candidateRcpts[i]['Name'], candidateRcpts[i]['Amount']])
                     uniqueDonors++;

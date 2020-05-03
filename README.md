@@ -11,4 +11,7 @@ This tool will give you a sweeping overview of a candidate who files their finan
 4. Run python -m http.server to run a local server.
 5. Upload your csv.
 
+### If you run into errors
+There is example data in the /data folder. Check to see if your headers match up with that dataset.
+
 The tool [Papa Parse](https://www.papaparse.com/) was used for this project.
