@@ -33,18 +33,61 @@ function handleFileSelect(evt) {
         // Total of Aggregated Individual Contributors & Non Individual Contributors
         let totalAggDonors = 0;
         let totalDonors = 0;
+        let uniqueDonors = 0;
+        let donorsArr = [];
+        let donorsError = 0;
+
+        function has(name, list) {
+            for (let i = 0; i < list.length; i++) {
+                if (name === list[i][0]) {
+                    return true;
+                } 
+            }
+            return false;
+        }
+
+        // console.log(has("Alexis", donorsArr));
 
         for (let i = 0; i < candidateRcpts.length; i++) {
             if (candidateRcpts[i]['Name'] === "Aggregated Individual Contribution") {
                 totalAggDonors++;
+            } else if (candidateRcpts[i]['Name'] === undefined || candidateRcpts[i]['Name'] === undefined) {
+                donorsError++;
             } else {
                 totalDonors++;
+
+                if (!has(candidateRcpts[i]['Name'], donorsArr)) {
+                    donorsArr.push([candidateRcpts[i]['Name'], candidateRcpts[i]['Amount']])
+                    uniqueDonors++;
+                }
+                
             }
         }
+        // console.log(uniqueDonors);
+        console.log(donorsArr);
+        // console.log(donorsArr[1]);
+        // console.log(donorsArr[1][0] + ", " + donorsArr[1][1]);
+        // console.log(donorsArr.length);
+        for (let i = 0; i < donorsArr.length; i++) {
+            // console.log(donorsArr[i][0]);
+            // console.log(donorsArr[i][1]);
+            document.getElementById("donorsList").innerHTML = '<tr><td>' + donorsArr[i][0] + '</td><td>' + donorsArr[i][1] + '</td></tr>';
+        }
+
+
 
         console.log("The total number of Aggregated Individual Contributors who gave less than $50 is " + totalAggDonors + ". And the total number of donors who gave over $50 is " + totalDonors + ".");
         document.getElementById('individuals').innerHTML = totalAggDonors;
-        document.getElementById('donors').innerHTML = totalDonors;
+        document.getElementById('donations').innerHTML = totalDonors;
+        document.getElementById('donors').innerHTML = uniqueDonors;
+        if (donorsError > 0) {
+            if (donorsError === 1) {
+                document.getElementById('uniqueDonorsError').innerHTML = "There was " + donorsError + " undefined or null value in this list. It is not included below."; 
+            } else {
+                document.getElementById('uniqueDonorsError').innerHTML = "There were " + donorsError + " undefined or null values in this list. They are not included below."; 
+            }
+            
+        }
 
         // AVERAGE
         let sum = 0;
@@ -62,15 +105,16 @@ function handleFileSelect(evt) {
         console.log("The average of this candidates donations was: $" + parseFloat(sum / divisor).toFixed(2) + " (Rounded to 2 decimals)");
         document.getElementById('average').innerHTML = "$" + parseFloat(sum / divisor).toFixed(2);
 
-        if (undefinedCount === 0) {
-            console.log("There were no undefined or null valeus.");
-        } else if (undefinedCount === 1) {
-            document.getElementById('undefinedCount').innerHTML = "There was " + undefinedCount + " undefined or null value. This value was not factored into the average.";
-            console.log("There was " + undefinedCount + " undefined or null value. This value was not factored into the average.");
-        } else {
-            document.getElementById('undefinedCount').innerHTML = "There were " + undefinedCount + " undefined or null values. These values were not factored into the average.";
-            console.log("There were " + undefinedCount + " undefined or null values. These values were not factored into the average.");
-        }
+        if (undefinedCount > 0) {
+    
+            if (undefinedCount === 1) {
+                document.getElementById('undefinedCount').innerHTML = "There was " + undefinedCount + " undefined or null value. This value was not factored into the average.";
+                console.log("There was " + undefinedCount + " undefined or null value. This value was not factored into the average.");
+            } else {
+                document.getElementById('undefinedCount').innerHTML = "There were " + undefinedCount + " undefined or null values. These values were not factored into the average.";
+                console.log("There were " + undefinedCount + " undefined or null values. These values were not factored into the average.");
+            }
+    }
 
         // Minimum
         let amountVal = [];
@@ -106,15 +150,16 @@ function handleFileSelect(evt) {
 
         document.getElementById('minimumDonor').innerHTML = "$" + min;
 
-        if (lessCount === 0) {
+        if (lessCount > 0) {
             // Nothing
-        } else if (lessCount === 1) {
-            document.getElementById('error').innerHTML = "Seems like an amount less than $50 and NOT labeled an Aggregated Individual Contribution was caught in this data set.";
+            if (lessCount === 1) {
+                document.getElementById('error').innerHTML = "Seems like an amount less than $50 and NOT labeled an Aggregated Individual Contribution was caught in this data set.";
 
-            console.log("Seems like an amount less than $50 and NOT labeled an Aggregated Individual Contribution was caught in this data set.");
-        } else {
-            document.getElementById('error').innerHTML = "Seems like several amounts less than $50 and NOT labeled Aggregated Individual Contributions were caught in this data set.";
-            console.log("Seems like several amounts less than $50 and NOT Aggregated Individual Contributors were caught in this data set.");
+                console.log("Seems like an amount less than $50 and NOT labeled an Aggregated Individual Contribution was caught in this data set.");
+            } else {
+                document.getElementById('error').innerHTML = "Seems like several amounts less than $50 and NOT labeled Aggregated Individual Contributions were caught in this data set.";
+                console.log("Seems like several amounts less than $50 and NOT Aggregated Individual Contributors were caught in this data set.");
+            }
         }
         
         // Maximum

@@ -43,35 +43,64 @@
       <input type="file" id="csv-file" name="files"/>
 
       <h3>Report Results</h3>
-      <div class="report-results">
-        <div class="row">
-          <div class="xs-12 col-sm-12 col-md-6 col-lg-6">
-            <!--Total Amount-->
-            <p class="textDescription">The <strong>total</strong> amount the candidate received in this report is: <span id="total"></span></p>
-
-            <!--Average-->
-            <p class="textDescription">The <strong>average</strong> amount is: <span id="average"></span> <em>(Rounded to 2 decimals)</em><br>
-            <span id="undefinedCount"></span>
-            </p>
-            
-            <!--Minimum Donation-->
-            <p class="textDescription">The <strong>lowest</strong> amount the candidate received in this report <strong>(including the Aggregated Individual Contributions)</strong> is: <span id="minimumAgg"></span></p>
-            <p class="textDescription">The <strong>lowest</strong> amount the candidate received in this report <strong>(without the Aggregated Individual Contributions)</strong> is: <span id="minimumDonor"></span><br>
-            <span id="error"></span>
-            </p>
-            
-          </div>
-          <div class="xs-12 col-sm-12 col-md-6 col-lg-6">
-            <!--Maximum Donation-->
-            <p class="textDescription">The <strong>maximum</strong> donation is: <span id="maximum"></span><br>
-            <span id="maxDonor"></span>
-            </p>
-            <p class="textDescription">The <strong>total number of Aggregated Individual Contributions (those who gave less than $50): </strong><span id="individuals"></span></p>
-            <p class="textDescription">The <strong>total number of donors who gave more than $50:</strong> <span id="donors"></span></p>
-          </div>
-        </div>
-
+      <div class="report-table">
+        <table class="table table-bordered">
+          <tbody>
+            <tr>
+              <td><p class="textDescription">The <strong>total</strong> amount the candidate received in this report is: <span id="total"></span></p></td>
+              <td>
+                <p class="textDescription">The <strong>maximum</strong> donation is: <span id="maximum"></span><br>
+                  <span id="maxDonor"></span>
+                  </p>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <p class="textDescription">The <strong>average</strong> amount is: <span id="average"></span> <em>(Rounded to 2 decimals)</em><br>
+                  <span id="undefinedCount"></span>
+                  </p>
+              </td>
+              <td><p class="textDescription">The <strong>total number of Aggregated Individual Contributions (those who gave less than $50): </strong><span id="individuals"></span></p></td>
+            </tr>
+            <tr>
+              <td>
+                <p class="textDescription">The <strong>lowest</strong> amount the candidate received in this report <strong>(including the Aggregated Individual Contributions)</strong> is: <span id="minimumAgg"></span></p>
+              </td>
+              <td>
+                <p class="textDescription">The <strong>total number of DONATIONS that are more than $50:</strong> <span id="donations"></span></p>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <p class="textDescription">The <strong>lowest</strong> amount the candidate received in this report <strong>(without the Aggregated Individual Contributions)</strong> is: <span id="minimumDonor"></span><br>
+                  <span id="error"></span>
+                  </p>
+              </td>
+              <td>
+                <p class="textDescription">The <strong>total number of DONORS that gave more than $50:</strong> <span id="donors"></span><br>
+                  <span class="uniqueDonors">(This does not account for if anyone has misspelled their name or added an initial. See list of donors below.)</span><br>
+                  <span id="uniqueDonorsError"></span>
+                </p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
+
+      <h3>Donors who gave over $50</h3>
+      <div id="donorsTable">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Donor</th>
+              <th>Amount</th>
+            </tr>
+          </thead>
+          <tbody id='donorsList'>        
+          </tbody>
+        </table>
+      </div>
+      
 
 
     </div>
