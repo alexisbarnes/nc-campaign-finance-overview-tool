@@ -1,0 +1,40 @@
+/* GLOBAL STYLES */
+h1 {
+    text-align: center;
+}
+
+h3 {
+    text-align: center;
+}
+
+.container-fluid {
+    padding: 0;
+}
+
+.header {
+    background-color: #1E3859;
+}
+
+.header h1 {
+    color: #fff;
+    padding: 20px;
+}
+
+.report-results {
+    margin: 10px 0 0 0;
+}
+
+#undefinedCount {
+    font-style: italic;
+    font-size: 10px;
+}
+
+#error {
+    font-style: italic;
+    font-size: 10px;
+}
+
+#maxDonor {
+    font-style: italic;
+    font-size: 12px;
+}
