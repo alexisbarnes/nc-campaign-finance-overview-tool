@@ -7,6 +7,15 @@ h3 {
     text-align: center;
 }
 
+a {
+    color: #D9AF32;
+}
+
+a:hover {
+    color: #8C1C1C;
+}
+
+
 .container-fluid {
     padding: 0;
 }
@@ -52,3 +61,12 @@ h3 {
     font-size: 10px;
     color: #8C0303;
 }
+
+.footer {
+    text-align: center;
+    border-top: 1px solid black;
+    background-color: #fff;
+    padding: 10px 0 20px 0;
+    margin: 100px 0 0 0;
+}
+
