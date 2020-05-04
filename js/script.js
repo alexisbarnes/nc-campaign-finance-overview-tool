@@ -248,6 +248,9 @@ function handleFileSelect(evt) {
                 type: 'bar',
 
             },
+            color: {
+                pattern: ['#8C1C1C']
+            },
             axis: {
                 x: {
                     type: 'category',

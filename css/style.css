@@ -32,6 +32,10 @@ a:hover {
     padding: 20px;
 }
 
+.reportTitle {
+    margin: 0 0 40px 0;
+}
+
 .report-results {
     margin: 10px 0 0 0;
 }
