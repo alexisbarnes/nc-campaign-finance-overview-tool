@@ -28,7 +28,7 @@ function handleFileSelect(evt) {
         }
 
         console.log("The total amount the candidate received in this report is $" + totalAmount + ".");
-        document.getElementById("total").innerHTML = " $" + totalAmount;
+        document.getElementById("total").innerHTML = " $" + parseFloat(totalAmount).toFixed(2);
 
         // Total of Aggregated Individual Contributors & Non Individual Contributors
         let totalAggDonors = 0;
@@ -37,9 +37,10 @@ function handleFileSelect(evt) {
         let donorsArr = [];
         let donorsError = 0;
 
-        function has(item, list) {
+        function has(item, list, amount) {
             for (let i = 0; i < list.length; i++) {
                 if (item === list[i][0]) {
+                    list[i][1] += amount;
                     return true;
                 } 
             }
@@ -58,7 +59,7 @@ function handleFileSelect(evt) {
                     totalDonors++;
                 }
                 
-                if (!has(candidateRcpts[i]['Name'], donorsArr)) {
+                if (!has(candidateRcpts[i]['Name'], donorsArr, candidateRcpts[i]['Amount'])) {
                     donorsArr.push([candidateRcpts[i]['Name'], candidateRcpts[i]['Amount']])
                     uniqueDonors++;
                 }
@@ -73,7 +74,7 @@ function handleFileSelect(evt) {
         for (let i = 0; i < donorsArr.length; i++) {
             // console.log(donorsArr[i][0]);
             // console.log(donorsArr[i][1]);
-            $('#donorsList').append('<tr><td>' + donorsArr[i][0] + '</td><td>' + '$' + donorsArr[i][1] + '</td></tr>');
+            $('#donorsList').append('<tr><td>' + donorsArr[i][0] + '</td><td>' + '$' + parseFloat(donorsArr[i][1]).toFixed(2) + '</td></tr>');
         }
 
 
