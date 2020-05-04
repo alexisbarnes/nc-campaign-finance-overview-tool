@@ -37,9 +37,9 @@ function handleFileSelect(evt) {
         let donorsArr = [];
         let donorsError = 0;
 
-        function has(name, list) {
+        function has(item, list) {
             for (let i = 0; i < list.length; i++) {
-                if (name === list[i][0]) {
+                if (item === list[i][0]) {
                     return true;
                 } 
             }
@@ -195,7 +195,73 @@ function handleFileSelect(evt) {
         console.log("The donor(s) that gave the max amount is/are " + highestDonors.join(', '));
         // document.getElementById('maxDonor').innerHTML = highestDonors;
 
-        
+        let byState = [];
+        let undefinedState = 0;
+
+        function hasState(item, list, amount) {
+            for (let i = 0; i < list.length; i++) {
+                if (item === list[i][0]) {
+                    list[i][1] += amount;
+                    return true;
+                } 
+            }
+            return false;
+        }
+
+        for (let i = 0; i < candidateRcpts.length; i++) {
+            if (candidateRcpts[i]['Name'] === undefined) {
+                undefinedState++;
+            } else if (candidateRcpts[i]['Name'] !== "Aggregated Individual contribution") {
+                if (hasState(candidateRcpts[i]['State'], byState, candidateRcpts[i]['Amount'])) {
+
+                } else  {
+                    byState.push([candidateRcpts[i]['State'], candidateRcpts[i]['Amount']]);
+                }
+            } 
+        }
+
+        // console.log(byState);
+        // console.log(byState[0][0]);
+        // console.log(byState[0][1]);
+
+        let state = [];
+        let stateTotal = ['stateTotal'];
+
+        for (let i = 0; i < byState.length; i++) {
+            state.push(byState[i][0]);
+            stateTotal.push(byState[i][1]);
+        }
+
+        console.log(state);
+        console.log(stateTotal);
+
+        var chart = c3.generate({
+            bindto: '#chart',
+            title: {
+                show: true,
+                text: 'Donation By State'
+            },
+            data: {
+                columns: [
+                    stateTotal
+                ],
+                type: 'bar',
+
+            },
+            axis: {
+                x: {
+                    type: 'category',
+                    categories: state,
+                    label: 'State'
+                },
+                y: {
+                    label: 'Amount ($)',
+                    tick: {
+                        format: d3.format("$")
+                    }
+                }
+            }
+        });
         
     }
   });

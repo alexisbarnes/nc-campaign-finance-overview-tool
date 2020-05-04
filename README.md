@@ -5,7 +5,7 @@ This tool will give you a sweeping overview of the Detailed Receipts that a cand
 *This was created with the intent of learning how to work with csv data and Javascript.*
 
 ## How To Get It Running
-1. Clone this repo.
+1. Clone or download this repo.
 2. Make sure you have the most recent version of [python](https://www.python.org/downloads/) installed.
 3. In your terminal, go the this cloned directory on your computer.
 4. Run python -m http.server to run a local server.
@@ -14,4 +14,4 @@ This tool will give you a sweeping overview of the Detailed Receipts that a cand
 ### If you run into errors
 There is example data in the /data folder. Check to see if your headers match up with that dataset.
 
-The tool [Papa Parse](https://www.papaparse.com/) was used for this project.
+The tool [Papa Parse](https://www.papaparse.com/) is used for this project.
