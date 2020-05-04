@@ -239,7 +239,7 @@ function handleFileSelect(evt) {
             bindto: '#chart',
             title: {
                 show: true,
-                text: 'Donation By State'
+                text: 'Donation Amount By State'
             },
             data: {
                 columns: [
