@@ -253,6 +253,8 @@ function handleFileSelect(evt) {
             }
         });
 
+        // MY LOGS
+
         // console.log("The total amount the candidate received in this report is $" + totalAmount + ".");
         // console.log(uniqueDonors);
         // console.log(donorsArr);
